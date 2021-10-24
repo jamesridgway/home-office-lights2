@@ -22,8 +22,8 @@ class StripManager:
         self.strip.begin()
         self.on = False
 
-    def solid_color(self, r, g, b):
-        self.strip.setBrightness(255)
+    def solid_color(self, r, g, b, brightness=255):
+        self.strip.setBrightness(brightness)
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
