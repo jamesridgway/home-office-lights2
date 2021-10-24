@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 from strip_manager import StripManager
 
@@ -12,14 +12,13 @@ def status():
 
 
 @app.route("/led-strip", methods=['POST'])
-def turn_on():
-    strip_manager.solid_color(255, 64, 0)
-    return jsonify(strip_manager.status())
+def toggle():
+    body = request.get_json()
+    if body['on']
+        strip_manager.solid_color(255, 64, 0)
+    else
+        strip_manager.clear()
 
-
-@app.route("/led-strip", methods=['DELETE'])
-def turn_off():
-    strip_manager.clear()
     return jsonify(strip_manager.status())
 
 

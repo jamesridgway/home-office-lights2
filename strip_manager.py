@@ -20,14 +20,14 @@ class StripManager:
         self.strip = Adafruit_NeoPixel(led_count, led_pin, led_freq_hz, led_dma, led_invert, led_brightness,
                                        led_channel)
         self.strip.begin()
-        self.state = 'off'
+        self.on = False
 
     def solid_color(self, r, g, b):
         self.strip.setBrightness(255)
         for i in range(0, self.strip.numPixels()):
             self.strip.setPixelColor(i, Color(r, g, b))
             self.strip.show()
-        self.state = 'on'
+        self.on = True
 
     def alert(self, r, g, b, wait_ms=50, iterations=10):
         for j in range(iterations):
@@ -38,16 +38,16 @@ class StripManager:
                 time.sleep(wait_ms / 1000.0)
                 for i in range(0, self.strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, 0)
-        self.state = 'on'
+        self.on = True
 
     def clear(self):
         self.solid_color(0, 0, 0)
-        self.state = 'off'
+        self.on = False
 
     def orange(self):
         self.solid_color(255, 64, 0)
 
     def status(self):
         return {
-            'state': self.state
+            'on': self.on
         }
