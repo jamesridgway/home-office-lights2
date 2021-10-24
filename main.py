@@ -16,7 +16,7 @@ def toggle():
     body = request.get_json()
     if body['on']:
         strip_manager.solid_color(255, 64, 0)
-    else
+    else:
         strip_manager.clear()
 
     return jsonify(strip_manager.status())
